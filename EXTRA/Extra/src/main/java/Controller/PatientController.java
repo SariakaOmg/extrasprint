@@ -1,6 +1,9 @@
 package main.java.Controller;
+import java.util.ArrayList;
+
 import main.java.Model.Patient;
 import mg.itu.Controller;
+import mg.itu.WebRest;
 import mg.itu.URLMapping;
 import main.java.Service.*;
 import mg.itu.Param;
@@ -25,5 +28,11 @@ public class PatientController {
     public void Modifier(@Param("Patient") Patient p){
         patientService.modifierPatient(p.getIdPatient(),p);
     }
-    
+    // getall
+    @WebRest
+    @URLMapping(value="/Getall", methode = "GET")
+    public ArrayList<Patient> GetAll(){
+        return patientService.GetallPatient();
+    }
+
 }

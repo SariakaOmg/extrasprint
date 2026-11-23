@@ -1,5 +1,7 @@
 package main.java.Service;
 
+import java.util.ArrayList;
+
 import main.java.Model.Patient;
 import main.java.Repository.PatientRepository;
 
@@ -29,6 +31,14 @@ public class PatientService {
             nouveauId = "PAT"+ind;
         }
         patient.setIdPatient(nouveauId);
+    }
+
+    public ArrayList<Patient> GetallPatient(){
+        ArrayList<Patient> p = patientRepository.GetAllPatient();
+        if(p.size() == 0){
+            throw new IllegalArgumentException("Pas de patient dans le table Patient");
+        }
+        return p;
     }
 
     public void ajouterPatient(Patient patient) {

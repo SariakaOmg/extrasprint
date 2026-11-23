@@ -23,6 +23,11 @@ import java.io.InputStream;
 import utils.*;
 import mg.itu.AuthentifiedMethod;
 import mg.itu.Param;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializer;
+import com.google.gson.JsonDeserializer;
+import java.time.LocalDateTime;
 
 import org.springframework.web.context.WebApplicationContext;
 public class FrontControllerServlet extends jakarta.servlet.http.HttpServlet {
@@ -431,7 +436,13 @@ public class FrontControllerServlet extends jakarta.servlet.http.HttpServlet {
                         }else{
                             request.setAttribute("statusExecution", "Retour : " + (result != null ? result.toString() : "null"));
                             // faire en json le resultat
-                            Gson gson = new Gson();
+                            // Gson gson = new Gson();
+                            Gson gson = new GsonBuilder()
+                                .registerTypeAdapter(LocalDateTime.class,
+                                    (JsonSerializer<LocalDateTime>) (date, type, ctx) -> new JsonPrimitive(date.toString()))
+                                .registerTypeAdapter(LocalDateTime.class,
+                                    (JsonDeserializer<LocalDateTime>) (json, type, ctx) -> LocalDateTime.parse(json.getAsString()))
+                                .create();
                             String json = gson.toJson(result);
                             request.setAttribute("jsonResult", json);
                         }

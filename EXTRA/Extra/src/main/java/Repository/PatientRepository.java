@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class PatientRepository {
 
@@ -129,5 +130,31 @@ public class PatientRepository {
             throw new RuntimeException("Erreur lors de la récupération du patient avec l'id " + idPatient, e);
         }
         return null;
+    }
+
+    public ArrayList<Patient> GetAllPatient(){
+        ArrayList<Patient> p = new ArrayList<>();
+        String requette = "SELECT * FROM Patient";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(requette)){
+            try (ResultSet rs = stmt.executeQuery()){
+                while (rs.next()){
+                    Timestamp dateNaissanceTs = rs.getTimestamp("DateNaissance");
+                    Patient patient = new Patient();
+                    patient.setIdPatient(rs.getString("IdPatient"));
+                    patient.setNom(rs.getString("Nom"));
+                    patient.setPrenom(rs.getString("Prenom"));
+                    patient.setAge(rs.getInt("AgePatient"));
+                    patient.setDateNaissance(dateNaissanceTs != null ? dateNaissanceTs.toLocalDateTime() : null);
+                    patient.setEmail(rs.getString("Email"));
+                    patient.setMotdePasse(rs.getString("MotdePasse"));
+                    p.add(patient);
+                }
+            } 
+        } catch (Exception e) {
+            // TODO: handle exception
+            throw new RuntimeException("Erreur lors de la recuperation de tous les patients ",e);
+        }
+        return p;
     }
 }
