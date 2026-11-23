@@ -1,0 +1,80 @@
+1. Lier ton terminal à ton dépôt GitHub
+git remote add origin https://github.com/SariakaOmg/FrameworkSprint.git
+
+2. Récupérer les informations de GitHub
+Pour que ton PC sache quelles branches existent sur GitHub (notamment main et Branche1), fais un "fetch" :
+git fetch origin
+
+3. Te positionner sur Branche1
+Maintenant que ton Git local connaît l'existence de cette branche, tu peux basculer dessus en créant une copie locale synchronisée :
+git checkout -b SprintBranche origin/SprintBranche
+
+# 1. Ajoute ton dossier (ou "." pour tout ajouter d'un coup)
+git add .
+
+# 2. Crée le commit
+git commit -m "Fichier Framework 16Juin2026"
+
+# 3. Envoie le tout sur GitHub
+git push origin SprintBranche
+
+Le commit est ta mémoire locale (sur ton ordinateur)
+git commit 💾 -> Tu crées un point de sauvegarde dans la mémoire de ton PC.
+git push 🚀 -> Tu envoies cette sauvegarde sur GitHub.
+
+Affichena anaty view ilay reponse fonction 
+preffixe, suffixe, Hashmap<key,ContenuedeVue> = afaka vakiana ilay ao anatin'ny Contenue de Vue iny no amena 
+Raha mireturn view ilay fonction, 
+
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
+
+
+Manao branche nouveau branche :
+- manamboatra programme autonome main
+- main afaka miconnecte : select * patient
+- migenerer qr code par rapport url : 
+- manana jpeg -> apetraka anaty cdn 
+- url qr code se pointe vers le php pas qr code.
+
+////////////////////
+- micreer methode :
+    ex : getall annotee en api
+- autonome :
+    - mirecuperer patient rehetra , pour chaque patient migenerer qr code et sauvegarde
+    - recuperer : 
+        - to de miantso an ilay api getall
+
+    ohatra a:
+        /usr/loca/cdn/patient/../image=.jpeg
+
+info dans qr code :
+    - /localhost:77/patient/[id]
+
+- Misy apache mitontona amle CDN ny virtual host (virtual host : ity url ity de mifandray amin ity )
+- virtual host (rehefa ity no antsoina de ity ny chemin andehananany)
+- url -> php -> miantso findbyid
+- fiche patient misy qr code 
+- tsy atao jsp ny front fa atap php
+
+////////////////
+
+QR code = url avec id = idpatient
+qr code jpeg
+
+manao dossier = avec idsous repertoire = misy sary n ilay mombamomba an ile patient
+
+Content Delivery Network : 
+- miservir sary na zvtr statique fa tsy voatery anaty site ilay assets 
+- repliquer partout dans le monde 
+- afaka atao cache
+
+mbola tsy atao :
+raisin ile php iy de raisin ile api endpoint 
+
+
+
+Todo :
+- la date n est pas entree : ok
+- generation automatique de id VARCHAR : ok
+- 
