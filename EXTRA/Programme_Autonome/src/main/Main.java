@@ -24,8 +24,15 @@ public class Main {
     static final String DOSSIER_CDN = "/usr/local/cdn/patient";         // où sauver les images
 
     public static void main(String[] args) throws Exception {
+        // creer requete http 
+        // URI.create = transforme la chaine de caractere en URI (une adresse structurée comprise par les outils réseau de Java) 
+        // HttpRequest.builder pour preparer une requete HTTP
+        // .GET : precise la methode HTTP que c est pas POST mais get.
+
         HttpRequest req = HttpRequest.newBuilder(URI.create(API_GETALL)).GET().build();
         HttpClient client = HttpClient.newHttpClient();
+        
+        // mandefa an le izy :
         HttpResponse<String> rep = client.send(req, HttpResponse.BodyHandlers.ofString());
 
         if (rep.statusCode() != 200) {
@@ -45,6 +52,9 @@ public class Main {
  
             BitMatrix matrice = new MultiFormatWriter()
                     .encode(URL_FICHE + p.IdPatient, BarcodeFormat.QR_CODE, 300, 300);
+
+            // matrice (1er argument) C'est la grille 300 × 300 de points noirs et blancs créée à la ligne précédente.
+            // writeToPath transfoeme le BigMatrix en image
             MatrixToImageWriter.writeToPath(matrice, "JPG", dossier.resolve("qrcode.jpeg"));
  
             System.out.println("OK : " + p.IdPatient + " -> " + dossier.resolve("qrcode.jpeg"));
